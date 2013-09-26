@@ -1,9 +1,9 @@
-UserManager = function(app){
-    var UserProvider = require('./userProvider_array').UserProvider;
-    var userProvider = new UserProvider();
+var mongoServer = 'localhost';
+var mongoPort = 27017;
 
-    userProvider.insertUser({_id : 1,name :'Rocky', city: 'Omaha', state:'NE'}, function(a,b){});
-    userProvider.insertUser({_id : 2,name : 'Dave', city : 'Stafford', state : 'VA'}, function(a,b){});
+UserManager = function(app){
+    var UserProvider = require('./userProvider_mongodb').UserProvider;
+    var userProvider = new UserProvider(mongoServer,mongoPort);
 
     app.get('/users',function(req,res){
         userProvider.fetchAllUsers(function(err,users){
