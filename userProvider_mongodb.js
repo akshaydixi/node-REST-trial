@@ -28,7 +28,7 @@ UserProvider = function(host, port){
             }
             else{
                 users.findOne({
-                    _id : db.bson_serializer.ObjectID.createFromHexString(id)
+                    _id : users.db.bson_serializer.ObjectID.createFromHexString(id)
                 },function(error,result){
                     cb(error,result);
                 });
@@ -71,7 +71,7 @@ UserProvider = function(host, port){
             }
             else{
                 users.remove({_id: users.db.bson_serializer.ObjectID.createHexFromString(id)}
-                    function(error,result){
+                    ,function(error,result){
                         cb(error,result);
                     });
                 }
@@ -88,5 +88,5 @@ exports.UserProvider = UserProvider;
 
 
 
-                }
+                
 
